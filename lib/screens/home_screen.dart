@@ -121,6 +121,24 @@ class NarutoCharacterTile extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
             ),
             _buildDebutInfo(character['debut']),
+            const Divider(),
+            const Text(
+              'Personal Information:',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            ),
+            _buildPersonalInfo(character['personal']),
+            const Divider(),
+            const Text(
+              'Rank Information:',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            ),
+            _buildRankInfo(character['rank']),
+            const Divider(),
+            const Text(
+              'Voice Actors:',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            ),
+            _buildVoiceActors(character['voiceActors']),
           ],
         ),
       ),
@@ -152,5 +170,46 @@ class NarutoCharacterTile extends StatelessWidget {
       );
     }
     return const Text('No debut information available');
+  }
+
+  Widget _buildPersonalInfo(Map<String, dynamic>? personal) {
+    if (personal != null) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (personal['birthdate'] != null) Text('Birthdate: ${personal['birthdate']}'),
+          if (personal['sex'] != null) Text('Sex: ${personal['sex']}'),
+          if (personal['status'] != null) Text('Status: ${personal['status']}'),
+          if (personal['affiliation'] != null) Text('Affiliation: ${personal['affiliation']}'),
+        ],
+      );
+    }
+    return const Text('No personal information available');
+  }
+
+  Widget _buildRankInfo(Map<String, dynamic>? rank) {
+    if (rank != null) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (rank['ninjaRank'] != null) Text('Ninja Rank: ${rank['ninjaRank']}'),
+          if (rank['ninjaRegistration'] != null) Text('Registration: ${rank['ninjaRegistration']}'),
+        ],
+      );
+    }
+    return const Text('No rank information available');
+  }
+
+  Widget _buildVoiceActors(Map<String, dynamic>? voiceActors) {
+    if (voiceActors != null) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (voiceActors['japanese'] != null) Text('Japanese: ${voiceActors['japanese']}'),
+          if (voiceActors['english'] != null) Text('English: ${voiceActors['english']}'),
+        ],
+      );
+    }
+    return const Text('No voice actor information available');
   }
 }
